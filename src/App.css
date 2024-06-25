@@ -1,0 +1,118 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e1e1e;
+  margin: 0;
+}
+
+.business-card {
+  background-color: #2e2e2e;
+  border: 10px solid #00ff84;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.image-qrcode {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.personal-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.social-links {
+  position: relative;
+  bottom: 0;
+  display: flex;
+}
+.card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hashtag {
+  color: #00ff84;
+  margin: 0;
+}
+
+.info {
+  margin: 5px 0;
+}
+
+.qr-code {
+  text-align: center;
+}
+
+.scan-me {
+  color: #00ff84;
+  margin: 0 0 10px 0;
+  font-size: 12px;
+}
+
+.qr-code img {
+  width: 100px;
+  height: 100px;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.btn {
+  text-transform: none !important;
+  background-color: #00ff84 !important;
+  color: #2e2e2e !important;
+}
+
+.btn:hover {
+  background-color: #2e2e2e !important;
+  color: #00ff84 !important;
+}
+.modal-box {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #2e2e2e; /* Or use your desired background color */
+  box-shadow: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  align-items: center;
+}
+.modal-box > p {
+  text-align: center;
+  color: #00ff84;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 50%;
+  gap: 10px;
+}
+.input .MuiFilledInput-root {
+  background-color: white; /* Default background color */
+}
+.input .MuiFilledInput-root:hover {
+  background-color: white; /* Default background color */
+}
+.input .MuiFilledInput-root.Mui-focused {
+  background-color: white; /* Focus background color */
+}
+.input .MuiFormLabel-root.Mui-focused {
+  color: #2e2e2e; /* Optional: to change the label color when focused */
+}
+.input .MuiFilledInput-underline:after {
+  border-bottom: 2px solid #00ff84; /* Focus border color */
+}
