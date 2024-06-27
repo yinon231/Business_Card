@@ -6,6 +6,9 @@ import TextField from "@mui/material/TextField";
 import { QRCode } from "react-qrcode-logo";
 import "./App.css";
 import github from "./assets/github.png";
+import DOMPurify from "dompurify";
+import axios from "axios";
+
 function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,11 +19,30 @@ function App() {
   const handleClose = () => setOpen(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ name, email, message });
+    const namey = DOMPurify.sanitize(name);
+    const emaily = DOMPurify.sanitize(email);
+    const messagey = DOMPurify.sanitize(message);
     setName("");
     setEmail("");
     setMessage("");
     setOpen(false);
+    axios
+      .post(
+        "https://glo2ck4dpcffibzokfxzzpbyrm0dkxul.lambda-url.eu-west-1.on.aws/ ",
+        {
+          name: namey,
+          email: emaily,
+          message: messagey,
+        }
+      )
+      .then(function (response) {
+        if (response.status === 200) {
+          alert("Message sent successfully");
+          console.log(response);
+        } else {
+          alert("Message not sent");
+        }
+      });
   };
 
   return (
@@ -70,7 +92,12 @@ function App() {
                     onChange={(e) => setMessage(e.target.value)}
                     required
                   />
-                  <Button className="btn" type="submit" variant="contained">
+                  <Button
+                    onClick={(e) => handleSubmit(e)}
+                    className="btn"
+                    type="submit"
+                    variant="contained"
+                  >
                     Send
                   </Button>
                 </form>
@@ -95,8 +122,8 @@ function App() {
           <div className="qr-code">
             <p className="scan-me">SCAN ME</p>
             <QRCode
-              value="https://www.linkedin.com/in/yinon-maman-8a973b21b/"
-              size={100}
+              value="https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihaKEzKxV16m1E7yV9jSzixOcjJu_1lhgtZJ_WpFlLZdcRmKl9DYurIDsA9sxPfoy-xOeDzfZHuexMq6xamfclGRYCYY8kWNCSQ=s1600-rw-v1"
+              size={150}
             />
           </div>
         </div>
