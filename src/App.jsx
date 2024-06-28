@@ -43,7 +43,9 @@ function App() {
               message: messagey,
             }
           )
-          .then(alert("Message sent successfully"))
+          .then(function (res) {
+            if (res.status === 200) alert("Message sent successfully");
+          })
           .catch(function (err) {
             alert("Message not sent", err);
           });
