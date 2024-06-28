@@ -33,21 +33,19 @@ function App() {
         setEmail("");
         setMessage("");
         setOpen(false);
+
         axios
           .post(
-            "https://glo2ck4dpcffibzokfxzzpbyrm0dkxul.lambda-url.eu-west-1.on.aws/ ",
+            "https://4kayclxtwi2vlb4bzusp4i5zxy0qflod.lambda-url.eu-west-1.on.aws/ ",
             {
               name: namey,
               email: emaily,
               message: messagey,
             }
           )
-          .then(function (response) {
-            if (response.status === 200) {
-              alert("Message sent successfully");
-            } else {
-              alert("Message not sent");
-            }
+          .then(alert("Message sent successfully"))
+          .catch(function (err) {
+            alert("Message not sent", err);
           });
       }
     }
