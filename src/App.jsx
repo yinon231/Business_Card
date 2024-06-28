@@ -19,30 +19,38 @@ function App() {
   const handleClose = () => setOpen(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const namey = DOMPurify.sanitize(name);
-    const emaily = DOMPurify.sanitize(email);
-    const messagey = DOMPurify.sanitize(message);
-    setName("");
-    setEmail("");
-    setMessage("");
-    setOpen(false);
-    axios
-      .post(
-        "https://glo2ck4dpcffibzokfxzzpbyrm0dkxul.lambda-url.eu-west-1.on.aws/ ",
-        {
-          name: namey,
-          email: emaily,
-          message: messagey,
-        }
-      )
-      .then(function (response) {
-        if (response.status === 200) {
-          alert("Message sent successfully");
-          console.log(response);
-        } else {
-          alert("Message not sent");
-        }
-      });
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
+    if (!name || !email || !message) {
+      alert("Please fill all fields");
+    } else {
+      if (!regex.test(email)) {
+        alert("Please enter a valid email");
+      } else {
+        const namey = DOMPurify.sanitize(name);
+        const emaily = DOMPurify.sanitize(email);
+        const messagey = DOMPurify.sanitize(message);
+        setName("");
+        setEmail("");
+        setMessage("");
+        setOpen(false);
+        axios
+          .post(
+            "https://glo2ck4dpcffibzokfxzzpbyrm0dkxul.lambda-url.eu-west-1.on.aws/ ",
+            {
+              name: namey,
+              email: emaily,
+              message: messagey,
+            }
+          )
+          .then(function (response) {
+            if (response.status === 200) {
+              alert("Message sent successfully");
+            } else {
+              alert("Message not sent");
+            }
+          });
+      }
+    }
   };
 
   return (
@@ -70,7 +78,6 @@ function App() {
                     variant="filled"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    required
                   />
                   <TextField
                     className="input"
@@ -79,7 +86,6 @@ function App() {
                     variant="filled"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
                   />
                   <TextField
                     className="input"
@@ -90,14 +96,8 @@ function App() {
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    required
                   />
-                  <Button
-                    onClick={(e) => handleSubmit(e)}
-                    className="btn"
-                    type="submit"
-                    variant="contained"
-                  >
+                  <Button className="btn" type="submit" variant="contained">
                     Send
                   </Button>
                 </form>
